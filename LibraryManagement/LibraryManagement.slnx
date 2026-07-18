@@ -2,5 +2,6 @@
   <Project Path="LibraryManagement.Application/LibraryManagement.Application.csproj" />
   <Project Path="LibraryManagement.Core/LibraryManagement.Core.csproj" />
   <Project Path="LibraryManagement.Infrastructure/LibraryManagement.Infrastructure.csproj" />
+  <Project Path="LibraryManagement.Tests/LibraryManagement.Tests.csproj" Id="517af4d5-f680-40cb-919a-b3183658ff8e" />
   <Project Path="LibraryManagement/LibraryManagement.csproj" />
 </Solution>

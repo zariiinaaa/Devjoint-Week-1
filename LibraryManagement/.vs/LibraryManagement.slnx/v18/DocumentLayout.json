@@ -1,88 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{84FE0676-90D0-9CED-32F3-13A41536C383}|LibraryManagement.Core\\LibraryManagement.Core.csproj|c:\\users\\asus\\onedrive\\desktop\\devjoint\\librarymanagement\\librarymanagement.core\\interfaces\\ibookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{84FE0676-90D0-9CED-32F3-13A41536C383}|LibraryManagement.Core\\LibraryManagement.Core.csproj|solutionrelative:librarymanagement.core\\interfaces\\ibookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02B4CC3D-E2BA-283D-B2C6-93E577AAFE4F}|LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj|c:\\users\\asus\\onedrive\\desktop\\devjoint\\librarymanagement\\librarymanagement.infrastructure\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02B4CC3D-E2BA-283D-B2C6-93E577AAFE4F}|LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj|solutionrelative:librarymanagement.infrastructure\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02B4CC3D-E2BA-283D-B2C6-93E577AAFE4F}|LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj|c:\\users\\asus\\onedrive\\desktop\\devjoint\\librarymanagement\\librarymanagement.infrastructure\\repositories\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02B4CC3D-E2BA-283D-B2C6-93E577AAFE4F}|LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj|solutionrelative:librarymanagement.infrastructure\\repositories\\bookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{84FE0676-90D0-9CED-32F3-13A41536C383}|LibraryManagement.Core\\LibraryManagement.Core.csproj|c:\\users\\asus\\onedrive\\desktop\\devjoint\\librarymanagement\\librarymanagement.core\\interfaces\\ibookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{84FE0676-90D0-9CED-32F3-13A41536C383}|LibraryManagement.Core\\LibraryManagement.Core.csproj|solutionrelative:librarymanagement.core\\interfaces\\ibookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "IBookService.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement.Core\\Interfaces\\IBookService.cs",
-              "RelativeDocumentMoniker": "LibraryManagement.Core\\Interfaces\\IBookService.cs",
-              "ToolTip": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement.Core\\Interfaces\\IBookService.cs",
-              "RelativeToolTip": "LibraryManagement.Core\\Interfaces\\IBookService.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAAAYAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-18T15:23:46.333Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BookService.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement.Infrastructure\\Services\\BookService.cs",
-              "RelativeDocumentMoniker": "LibraryManagement.Infrastructure\\Services\\BookService.cs",
-              "ToolTip": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement.Infrastructure\\Services\\BookService.cs",
-              "RelativeToolTip": "LibraryManagement.Infrastructure\\Services\\BookService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-18T15:23:35.224Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BookRepository.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement.Infrastructure\\Repositories\\BookRepository.cs",
-              "RelativeDocumentMoniker": "LibraryManagement.Infrastructure\\Repositories\\BookRepository.cs",
-              "ToolTip": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement.Infrastructure\\Repositories\\BookRepository.cs",
-              "RelativeToolTip": "LibraryManagement.Infrastructure\\Repositories\\BookRepository.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-18T15:23:24.579Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IBookRepository.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement.Core\\Interfaces\\IBookRepository.cs",
-              "RelativeDocumentMoniker": "LibraryManagement.Core\\Interfaces\\IBookRepository.cs",
-              "ToolTip": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement.Core\\Interfaces\\IBookRepository.cs",
-              "RelativeToolTip": "LibraryManagement.Core\\Interfaces\\IBookRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-18T15:23:13.019Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
