@@ -75,10 +75,10 @@ namespace LibraryManagement.Infrastructure.Migrations
                     b.Property<int>("AvailableCopies")
                         .HasColumnType("int");
 
-                    b.Property<string>("Isbn")
+                    b.Property<string>("BookCode")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("PublishedYear")
                         .HasColumnType("int");
@@ -93,7 +93,7 @@ namespace LibraryManagement.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Isbn")
+                    b.HasIndex("BookCode")
                         .IsUnique();
 
                     b.ToTable("Books", (string)null);

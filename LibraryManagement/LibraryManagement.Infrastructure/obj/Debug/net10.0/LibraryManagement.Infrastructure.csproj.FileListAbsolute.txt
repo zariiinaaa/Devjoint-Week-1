@@ -15,3 +15,4 @@ C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infr
 C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\ref\LibraryManagement.Infrastructure.dll
 C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\bin\Debug\net10.0\LibraryManagement.Infrastructure.runtimeconfig.json
 C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\LibraryManagement.Infrastructure.genruntimeconfig.cache
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\LibraryManagement.Infrastructure.sourcelink.json

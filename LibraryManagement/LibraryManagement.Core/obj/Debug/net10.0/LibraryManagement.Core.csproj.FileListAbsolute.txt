@@ -9,3 +9,4 @@ C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Core
 C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Core\obj\Debug\net10.0\refint\LibraryManagement.Core.dll
 C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Core\obj\Debug\net10.0\LibraryManagement.Core.pdb
 C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Core\obj\Debug\net10.0\ref\LibraryManagement.Core.dll
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Core\obj\Debug\net10.0\LibraryManagement.Core.sourcelink.json

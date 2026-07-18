@@ -13,3 +13,4 @@ C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Appl
 C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Application\obj\Debug\net10.0\refint\LibraryManagement.Application.dll
 C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Application\obj\Debug\net10.0\LibraryManagement.Application.pdb
 C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Application\obj\Debug\net10.0\ref\LibraryManagement.Application.dll
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Application\obj\Debug\net10.0\LibraryManagement.Application.sourcelink.json

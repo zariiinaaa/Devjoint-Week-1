@@ -1,0 +1,112 @@
+﻿using LibraryManagement.Core.DTOs;
+using LibraryManagement.Core.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+
+namespace LibraryManagement.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class BooksController : ControllerBase
+{
+    private readonly IBookService _bookService;
+
+    public BooksController(IBookService bookService)
+    {
+        _bookService = bookService;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<BookResponseDto>>> GetAll()
+    {
+        var books = await _bookService.GetAllAsync();
+
+        return Ok(books);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<BookResponseDto>> GetById(int id)
+    {
+        var book = await _bookService.GetByIdAsync(id);
+
+        if (book is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(book);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<BookResponseDto>> Create(
+        BookCreateDto dto)
+    {
+        try
+        {
+            var createdBook = await _bookService.CreateAsync(dto);
+
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = createdBook.Id },
+                createdBook);
+        }
+        catch (InvalidOperationException exception)
+        {
+            return Conflict(new
+            {
+                message = exception.Message
+            });
+        }
+        catch (ArgumentException exception)
+        {
+            return BadRequest(new
+            {
+                message = exception.Message
+            });
+        }
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(
+        int id,
+        BookUpdateDto dto)
+    {
+        try
+        {
+            var updated = await _bookService.UpdateAsync(id, dto);
+
+            if (!updated)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
+        catch (InvalidOperationException exception)
+        {
+            return Conflict(new
+            {
+                message = exception.Message
+            });
+        }
+        catch (ArgumentException exception)
+        {
+            return BadRequest(new
+            {
+                message = exception.Message
+            });
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var deleted = await _bookService.DeleteAsync(id);
+
+        if (!deleted)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
+    }
+}

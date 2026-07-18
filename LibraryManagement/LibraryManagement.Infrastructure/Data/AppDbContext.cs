@@ -34,12 +34,12 @@ public class AppDbContext : DbContext
             .HasMaxLength(200);
 
         modelBuilder.Entity<Book>()
-            .Property(book => book.Isbn)
+            .Property(book => book.BookCode)
             .IsRequired()
-            .HasMaxLength(20);
+            .HasMaxLength(50);
 
         modelBuilder.Entity<Book>()
-            .HasIndex(book => book.Isbn)
+            .HasIndex(book => book.BookCode)
             .IsUnique();
 
         modelBuilder.Entity<Book>()
