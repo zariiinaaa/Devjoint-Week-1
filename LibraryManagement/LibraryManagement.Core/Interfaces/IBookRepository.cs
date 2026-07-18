@@ -4,7 +4,11 @@ namespace LibraryManagement.Core.Interfaces;
 
 public interface IBookRepository
 {
-    Task<IEnumerable<Book>> GetAllAsync();
+    
+
+    Task<(IEnumerable<Book> Books, int TotalCount)> GetPagedAsync(int pageNumber,int pageSize,
+    string sortBy,
+    string sortDirection);
 
     Task<Book?> GetByIdAsync(int id);
 

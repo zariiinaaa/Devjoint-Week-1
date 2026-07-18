@@ -14,11 +14,52 @@ public class BookRepository : IBookRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Book>> GetAllAsync()
+   
+    public async Task<(IEnumerable<Book> Books, int TotalCount)> GetPagedAsync(int pageNumber,int pageSize,
+    string sortBy,
+    string sortDirection)
     {
-        return await _context.Books
-            .AsNoTracking()
+        var query = _context.Books
+            .AsNoTracking();
+
+        var totalCount = await query.CountAsync();
+
+        var isAscending = sortDirection.Equals(
+            "asc",
+            StringComparison.OrdinalIgnoreCase);
+
+        var isDescending = sortDirection.Equals(
+            "desc",
+            StringComparison.OrdinalIgnoreCase);
+
+        if (!isAscending && !isDescending)
+        {
+            throw new ArgumentException(
+                "Sort direction must be 'asc' or 'desc'.");
+        }
+
+        var orderedQuery = sortBy.ToLowerInvariant() switch
+        {
+            "title" => isDescending
+                ? query.OrderByDescending(book => book.Title)
+                : query.OrderBy(book => book.Title),
+
+            "bookcode" => isDescending
+                ? query.OrderByDescending(book => book.BookCode)
+                : query.OrderBy(book => book.BookCode),
+
+            "publishedyear" => isDescending
+                ? query.OrderByDescending(book => book.PublishedYear)
+                : query.OrderBy(book => book.PublishedYear),
+
+            _ => throw new ArgumentException(
+                "Sort by must be 'title', 'bookCode' or 'publishedYear'.")
+        };
+
+        var books = await orderedQuery.Skip((pageNumber - 1) * pageSize) .Take(pageSize)
             .ToListAsync();
+
+        return (books, totalCount);
     }
 
     public async Task<Book?> GetByIdAsync(int id)

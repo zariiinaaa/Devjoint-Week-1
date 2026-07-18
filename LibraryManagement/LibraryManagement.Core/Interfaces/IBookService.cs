@@ -4,8 +4,8 @@ namespace LibraryManagement.Core.Interfaces;
 
 public interface IBookService
 {
-    Task<IEnumerable<BookResponseDto>> GetAllAsync();
-
+   
+    Task<PagedResponseDto<BookResponseDto>> GetPagedAsync(ListQueryDto query);
     Task<BookResponseDto?> GetByIdAsync(int id);
 
     Task<BookResponseDto> CreateAsync(BookCreateDto dto);

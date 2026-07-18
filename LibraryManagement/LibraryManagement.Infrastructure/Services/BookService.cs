@@ -13,11 +13,33 @@ public class BookService : IBookService
         _bookRepository = bookRepository;
     }
 
-    public async Task<IEnumerable<BookResponseDto>> GetAllAsync()
-    {
-        var books = await _bookRepository.GetAllAsync();
+   
 
-        return books.Select(book => MapToResponseDto(book));
+
+    public async Task<PagedResponseDto<BookResponseDto>> GetPagedAsync(ListQueryDto query)
+    {
+        var (books, totalCount) =
+            await _bookRepository.GetPagedAsync(
+                query.PageNumber,
+                query.PageSize,
+                query.SortBy,
+                query.SortDirection);
+
+        var bookDtos = books
+            .Select(book => MapToResponseDto(book))
+            .ToList();
+
+        var totalPages = (int)Math.Ceiling(
+            totalCount / (double)query.PageSize);
+
+        return new PagedResponseDto<BookResponseDto>
+        {
+            Items = bookDtos,
+            PageNumber = query.PageNumber,
+            PageSize = query.PageSize,
+            TotalCount = totalCount,
+            TotalPages = totalPages
+        };
     }
 
     public async Task<BookResponseDto?> GetByIdAsync(int id)

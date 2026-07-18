@@ -16,11 +16,11 @@ public class BooksController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<BookResponseDto>>> GetAll()
+    public async Task<ActionResult<PagedResponseDto<BookResponseDto>>> GetAll([FromQuery] ListQueryDto query)
     {
-        var books = await _bookService.GetAllAsync();
+        var result =await _bookService.GetPagedAsync(query);
 
-        return Ok(books);
+        return Ok(result);
     }
 
     [HttpGet("{id}")]
