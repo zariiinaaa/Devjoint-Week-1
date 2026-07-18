@@ -1,106 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{7E2B733A-DBF8-FDB5-F770-1327FBD7B25A}|LibraryManagement\\LibraryManagement.csproj|c:\\users\\asus\\onedrive\\desktop\\devjoint\\librarymanagement\\librarymanagement\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{7E2B733A-DBF8-FDB5-F770-1327FBD7B25A}|LibraryManagement\\LibraryManagement.csproj|solutionrelative:librarymanagement\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E2B733A-DBF8-FDB5-F770-1327FBD7B25A}|LibraryManagement\\LibraryManagement.csproj|c:\\users\\asus\\onedrive\\desktop\\devjoint\\librarymanagement\\librarymanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{7E2B733A-DBF8-FDB5-F770-1327FBD7B25A}|LibraryManagement\\LibraryManagement.csproj|solutionrelative:librarymanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E2B733A-DBF8-FDB5-F770-1327FBD7B25A}|LibraryManagement\\LibraryManagement.csproj|c:\\users\\asus\\onedrive\\desktop\\devjoint\\librarymanagement\\librarymanagement\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{7E2B733A-DBF8-FDB5-F770-1327FBD7B25A}|LibraryManagement\\LibraryManagement.csproj|solutionrelative:librarymanagement\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E2B733A-DBF8-FDB5-F770-1327FBD7B25A}|LibraryManagement\\LibraryManagement.csproj|c:\\users\\asus\\onedrive\\desktop\\devjoint\\librarymanagement\\librarymanagement\\librarymanagement.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{7E2B733A-DBF8-FDB5-F770-1327FBD7B25A}|LibraryManagement\\LibraryManagement.csproj|solutionrelative:librarymanagement\\librarymanagement.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{02B4CC3D-E2BA-283D-B2C6-93E577AAFE4F}|LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj|c:\\users\\asus\\onedrive\\desktop\\devjoint\\librarymanagement\\librarymanagement.infrastructure\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{02B4CC3D-E2BA-283D-B2C6-93E577AAFE4F}|LibraryManagement.Infrastructure\\LibraryManagement.Infrastructure.csproj|solutionrelative:librarymanagement.infrastructure\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BookService.cs",
-              "DocumentMoniker": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement.Infrastructure\\Services\\BookService.cs",
-              "RelativeDocumentMoniker": "LibraryManagement.Infrastructure\\Services\\BookService.cs",
-              "ToolTip": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement.Infrastructure\\Services\\BookService.cs",
-              "RelativeToolTip": "LibraryManagement.Infrastructure\\Services\\BookService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-18T11:50:41.324Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "LibraryManagement\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement\\Properties\\launchSettings.json",
-              "RelativeToolTip": "LibraryManagement\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-07-18T12:04:21.501Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement\\appsettings.json",
-              "RelativeDocumentMoniker": "LibraryManagement\\appsettings.json",
-              "ToolTip": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement\\appsettings.json",
-              "RelativeToolTip": "LibraryManagement\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-07-18T12:04:18.414Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "LibraryManagement\\appsettings.Development.json",
-              "ToolTip": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement\\appsettings.Development.json",
-              "RelativeToolTip": "LibraryManagement\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-07-18T12:04:15.728Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LibraryManagement",
-              "DocumentMoniker": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement\\LibraryManagement.csproj",
-              "RelativeDocumentMoniker": "LibraryManagement\\LibraryManagement.csproj",
-              "ToolTip": "C:\\Users\\asus\\OneDrive\\Desktop\\Devjoint\\LibraryManagement\\LibraryManagement\\LibraryManagement.csproj",
-              "RelativeToolTip": "LibraryManagement\\LibraryManagement.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-07-18T12:03:59.318Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }
