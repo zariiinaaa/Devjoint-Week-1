@@ -1,0 +1,17 @@
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\bin\Debug\net10.0\LibraryManagement.Infrastructure.deps.json
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\bin\Debug\net10.0\LibraryManagement.Infrastructure.dll
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\bin\Debug\net10.0\LibraryManagement.Infrastructure.pdb
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\bin\Debug\net10.0\LibraryManagement.Core.dll
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\bin\Debug\net10.0\LibraryManagement.Core.pdb
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\LibraryManagement.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\LibraryManagement.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\LibraryManagement.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\LibraryManagement.Infrastructure.AssemblyInfo.cs
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\LibraryManagement.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\LibraryM.7458E269.Up2Date
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\LibraryManagement.Infrastructure.dll
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\refint\LibraryManagement.Infrastructure.dll
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\LibraryManagement.Infrastructure.pdb
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\ref\LibraryManagement.Infrastructure.dll
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\bin\Debug\net10.0\LibraryManagement.Infrastructure.runtimeconfig.json
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Infrastructure\obj\Debug\net10.0\LibraryManagement.Infrastructure.genruntimeconfig.cache
