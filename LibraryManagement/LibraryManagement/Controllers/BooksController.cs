@@ -38,63 +38,30 @@ public class BooksController : ControllerBase
 
     [HttpPost]
     public async Task<ActionResult<BookResponseDto>> Create(
-        BookCreateDto dto)
+    BookCreateDto dto)
     {
-        try
-        {
-            var createdBook = await _bookService.CreateAsync(dto);
+        var createdBook =
+            await _bookService.CreateAsync(dto);
 
-            return CreatedAtAction(
-                nameof(GetById),
-                new { id = createdBook.Id },
-                createdBook);
-        }
-        catch (InvalidOperationException exception)
-        {
-            return Conflict(new
-            {
-                message = exception.Message
-            });
-        }
-        catch (ArgumentException exception)
-        {
-            return BadRequest(new
-            {
-                message = exception.Message
-            });
-        }
+        return CreatedAtAction(
+            nameof(GetById),
+            new { id = createdBook.Id },
+            createdBook);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(
-        int id,
-        BookUpdateDto dto)
+      int id,
+      BookUpdateDto dto)
     {
-        try
-        {
-            var updated = await _bookService.UpdateAsync(id, dto);
+        var updated =await _bookService.UpdateAsync(id, dto);
 
-            if (!updated)
-            {
-                return NotFound();
-            }
+        if (!updated)
+        {
+            return NotFound();
+        }
 
-            return NoContent();
-        }
-        catch (InvalidOperationException exception)
-        {
-            return Conflict(new
-            {
-                message = exception.Message
-            });
-        }
-        catch (ArgumentException exception)
-        {
-            return BadRequest(new
-            {
-                message = exception.Message
-            });
-        }
+        return NoContent();
     }
 
     [HttpDelete("{id}")]

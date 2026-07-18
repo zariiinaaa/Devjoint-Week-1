@@ -37,80 +37,27 @@ public class LoansController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<LoanResponseDto>> Create(
-        LoanCreateDto dto)
+    public async Task<ActionResult<LoanResponseDto>> Create(LoanCreateDto dto)
     {
-        try
-        {
-            var createdLoan =
-                await _loanService.CreateAsync(dto);
+        var createdLoan =await _loanService.CreateAsync(dto);
 
-            return CreatedAtAction(
-                nameof(GetById),
-                new { id = createdLoan.Id },
-                createdLoan);
-        }
-        catch (KeyNotFoundException exception)
-        {
-            return NotFound(new
-            {
-                message = exception.Message
-            });
-        }
-        catch (InvalidOperationException exception)
-        {
-            return Conflict(new
-            {
-                message = exception.Message
-            });
-        }
-        catch (ArgumentException exception)
-        {
-            return BadRequest(new
-            {
-                message = exception.Message
-            });
-        }
+        return CreatedAtAction(nameof(GetById), new { id = createdLoan.Id },
+            createdLoan);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(
-        int id,
-        LoanUpdateDto dto)
+    int id,
+    LoanUpdateDto dto)
     {
-        try
-        {
-            var updated =
-                await _loanService.UpdateAsync(id, dto);
+        var updated =await _loanService.UpdateAsync(id, dto);
 
-            if (!updated)
-            {
-                return NotFound();
-            }
+        if (!updated)
+        {
+            return NotFound();
+        }
 
-            return NoContent();
-        }
-        catch (KeyNotFoundException exception)
-        {
-            return NotFound(new
-            {
-                message = exception.Message
-            });
-        }
-        catch (InvalidOperationException exception)
-        {
-            return Conflict(new
-            {
-                message = exception.Message
-            });
-        }
-        catch (ArgumentException exception)
-        {
-            return BadRequest(new
-            {
-                message = exception.Message
-            });
-        }
+        return NoContent();
     }
 
     [HttpDelete("{id}")]

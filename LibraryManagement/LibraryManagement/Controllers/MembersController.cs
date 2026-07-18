@@ -37,45 +37,26 @@ public class MembersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<MemberResponseDto>> Create(MemberCreateDto dto)
+    public async Task<ActionResult<MemberResponseDto>> Create(
+    MemberCreateDto dto)
     {
-        try
-        {
-            var createdMember =await _memberService.CreateAsync(dto);
+        var createdMember = await _memberService.CreateAsync(dto);
 
-            return CreatedAtAction(nameof(GetById),new { id = createdMember.Id },createdMember);
-        }
-        catch (InvalidOperationException exception)
-        {
-            return Conflict(new
-            {
-                message = exception.Message
-            });
-        }
+        return CreatedAtAction( nameof(GetById),new { id = createdMember.Id },
+            createdMember);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id,MemberUpdateDto dto)
+    public async Task<IActionResult> Update(int id, MemberUpdateDto dto)
     {
-        try
-        {
-            var updated =
-                await _memberService.UpdateAsync(id, dto);
+        var updated = await _memberService.UpdateAsync(id, dto);
 
-            if (!updated)
-            {
-                return NotFound();
-            }
-
-            return NoContent();
-        }
-        catch (InvalidOperationException exception)
+        if (!updated)
         {
-            return Conflict(new
-            {
-                message = exception.Message
-            });
+            return NotFound();
         }
+
+        return NoContent();
     }
 
     [HttpDelete("{id}")]

@@ -1,7 +1,7 @@
 using LibraryManagement.Core.Interfaces;
 using LibraryManagement.Infrastructure.Repositories;
 using LibraryManagement.Infrastructure.Services;
-
+using LibraryManagement.Middleware;
 using LibraryManagement.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -41,6 +41,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();
