@@ -4,7 +4,7 @@ namespace LibraryManagement.Core.Interfaces;
 
 public interface IAuthorService
 {
-    Task<IEnumerable<AuthorResponseDto>> GetAllAsync();
+    Task<PagedResponseDto<AuthorResponseDto>> GetPagedAsync(ListQueryDto query);
 
     Task<AuthorResponseDto?> GetByIdAsync(int id);
 

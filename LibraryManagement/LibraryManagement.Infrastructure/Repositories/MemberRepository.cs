@@ -5,56 +5,68 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagement.Infrastructure.Repositories;
 
-public class MemberRepository : IMemberRepository
+public class MemberRepository: BaseRepository<Member>, IMemberRepository
 {
-    private readonly AppDbContext _context;
-
     public MemberRepository(AppDbContext context)
+        : base(context)
     {
-        _context = context;
     }
 
-    public async Task<IEnumerable<Member>> GetAllAsync()
+    public async Task<bool> EmailExistsAsync(
+        string email,
+        int? memberIdToExclude = null)
     {
-        return await _context.Members
-            .AsNoTracking()
-            .ToListAsync();
+        return await _context.Members.AnyAsync(member =>
+            member.Email == email &&
+            (!memberIdToExclude.HasValue ||
+             member.Id != memberIdToExclude.Value));
     }
 
-    public async Task<Member?> GetByIdAsync(int id)
+    public async Task<(IEnumerable<Member> Members, int TotalCount)>
+    GetPagedAsync(int pageNumber,int pageSize,
+        string sortBy,
+        string sortDirection)
     {
-        return await _context.Members.AsNoTracking().FirstOrDefaultAsync(member => member.Id == id);
-    }
+        var query = _context.Members.AsNoTracking();
 
-    public async Task<Member> CreateAsync(Member member)
-    {
-        await _context.Members.AddAsync(member);
-        await _context.SaveChangesAsync();
+        var totalCount = await query.CountAsync();
 
-        return member;
-    }
+        var descending = sortDirection.Equals(
+            "desc",
+            StringComparison.OrdinalIgnoreCase);
 
-    public async Task UpdateAsync(Member member)
-    {
-        _context.Members.Update(member);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task DeleteAsync(Member member)
-    {
-        _context.Members.Remove(member);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task<bool> EmailExistsAsync(string email,int? memberIdToExclude = null)
-    {
-        if (memberIdToExclude.HasValue)
+        query = sortBy.ToLower() switch
         {
-            return await _context.Members.AnyAsync(member =>
-                member.Email == email &&
-                member.Id != memberIdToExclude.Value);
-        }
+            "firstname" => descending
+                ? query.OrderByDescending(member => member.FirstName)
+                : query.OrderBy(member => member.FirstName),
 
-        return await _context.Members.AnyAsync(member =>member.Email == email);
+            "lastname" => descending
+                ? query.OrderByDescending(member => member.LastName)
+                : query.OrderBy(member => member.LastName),
+
+            "email" => descending
+                ? query.OrderByDescending(member => member.Email)
+                : query.OrderBy(member => member.Email),
+
+            "membershipdate" => descending
+                ? query.OrderByDescending(member => member.MembershipDate)
+                : query.OrderBy(member => member.MembershipDate),
+
+            "isactive" => descending
+                ? query.OrderByDescending(member => member.IsActive)
+                : query.OrderBy(member => member.IsActive),
+
+            _ => descending
+                ? query.OrderByDescending(member => member.Id)
+                : query.OrderBy(member => member.Id)
+        };
+
+        var members = await query
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (members, totalCount);
     }
 }

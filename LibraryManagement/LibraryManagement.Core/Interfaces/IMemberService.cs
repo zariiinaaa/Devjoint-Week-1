@@ -4,7 +4,7 @@ namespace LibraryManagement.Core.Interfaces;
 
 public interface IMemberService
 {
-    Task<IEnumerable<MemberResponseDto>> GetAllAsync();
+    Task<PagedResponseDto<MemberResponseDto>> GetPagedAsync(ListQueryDto query);
 
     Task<MemberResponseDto?> GetByIdAsync(int id);
 

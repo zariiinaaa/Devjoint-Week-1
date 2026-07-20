@@ -2,15 +2,11 @@
 
 namespace LibraryManagement.Core.Interfaces;
 
-public interface ILoanRepository
+public interface ILoanRepository : IBaseRepository<Loan>
 {
-    Task<IEnumerable<Loan>> GetAllAsync();
-
-    Task<Loan?> GetByIdAsync(int id);
-
-    Task<Loan> CreateAsync(Loan loan);
-
-    Task UpdateAsync(Loan loan);
-
-    Task DeleteAsync(Loan loan);
+    Task<(IEnumerable<Loan> Loans, int TotalCount)> GetPagedAsync(
+        int pageNumber,
+        int pageSize,
+        string sortBy,
+        string sortDirection);
 }

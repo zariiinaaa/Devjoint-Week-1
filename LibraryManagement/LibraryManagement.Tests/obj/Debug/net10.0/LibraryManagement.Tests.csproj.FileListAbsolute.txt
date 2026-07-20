@@ -158,3 +158,5 @@ C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Test
 C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Tests\obj\Debug\net10.0\LibraryManagement.Tests.pdb
 C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Tests\obj\Debug\net10.0\LibraryManagement.Tests.genruntimeconfig.cache
 C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Tests\obj\Debug\net10.0\ref\LibraryManagement.Tests.dll
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Tests\bin\Debug\net10.0\LibraryManagement.Application.dll
+C:\Users\asus\OneDrive\Desktop\Devjoint\LibraryManagement\LibraryManagement.Tests\bin\Debug\net10.0\LibraryManagement.Application.pdb

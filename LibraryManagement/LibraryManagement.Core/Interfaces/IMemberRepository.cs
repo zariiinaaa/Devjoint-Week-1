@@ -2,17 +2,11 @@
 
 namespace LibraryManagement.Core.Interfaces;
 
-public interface IMemberRepository
+public interface IMemberRepository : IBaseRepository<Member>
 {
-    Task<IEnumerable<Member>> GetAllAsync();
-
-    Task<Member?> GetByIdAsync(int id);
-
-    Task<Member> CreateAsync(Member member);
-
-    Task UpdateAsync(Member member);
-
-    Task DeleteAsync(Member member);
-
     Task<bool> EmailExistsAsync(string email,int? memberIdToExclude = null);
+
+    Task<(IEnumerable<Member> Members, int TotalCount)> GetPagedAsync(int pageNumber, int pageSize,
+        string sortBy,
+        string sortDirection);
 }

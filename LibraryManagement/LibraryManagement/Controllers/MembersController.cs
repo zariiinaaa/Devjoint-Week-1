@@ -16,11 +16,12 @@ public class MembersController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<MemberResponseDto>>> GetAll()
+    public async Task<ActionResult<PagedResponseDto<MemberResponseDto>>>
+     GetAll([FromQuery] ListQueryDto query)
     {
-        var members = await _memberService.GetAllAsync();
+        var result = await _memberService.GetPagedAsync(query);
 
-        return Ok(members);
+        return Ok(result);
     }
 
     [HttpGet("{id}")]

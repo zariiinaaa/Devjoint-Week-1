@@ -16,11 +16,12 @@ public class LoansController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<LoanResponseDto>>> GetAll()
+    public async Task<ActionResult<PagedResponseDto<LoanResponseDto>>>
+    GetAll([FromQuery] ListQueryDto query)
     {
-        var loans = await _loanService.GetAllAsync();
+        var result = await _loanService.GetPagedAsync(query);
 
-        return Ok(loans);
+        return Ok(result);
     }
 
     [HttpGet("{id}")]

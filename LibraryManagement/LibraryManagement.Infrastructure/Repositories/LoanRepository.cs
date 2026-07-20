@@ -5,44 +5,57 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagement.Infrastructure.Repositories;
 
-public class LoanRepository : ILoanRepository
+public class LoanRepository: BaseRepository<Loan>, ILoanRepository
 {
-    private readonly AppDbContext _context;
+    public LoanRepository(AppDbContext context): base(context) { }
 
-    public LoanRepository(AppDbContext context)
+    public async Task<(IEnumerable<Loan> Loans, int TotalCount)>
+        GetPagedAsync(
+            int pageNumber,
+            int pageSize,
+            string sortBy,
+            string sortDirection)
     {
-        _context = context;
-    }
+        var query = _context.Loans.AsNoTracking();
 
-    public async Task<IEnumerable<Loan>> GetAllAsync()
-    {
-        return await _context.Loans
-            .AsNoTracking()
+        var totalCount = await query.CountAsync();
+
+        var descending = sortDirection.Equals(
+            "desc",
+            StringComparison.OrdinalIgnoreCase);
+
+        query = sortBy.ToLower() switch
+        {
+            "bookid" => descending
+                ? query.OrderByDescending(loan => loan.BookId)
+                : query.OrderBy(loan => loan.BookId),
+
+            "memberid" => descending
+                ? query.OrderByDescending(loan => loan.MemberId)
+                : query.OrderBy(loan => loan.MemberId),
+
+            "borrowedat" => descending
+                ? query.OrderByDescending(loan => loan.BorrowedAt)
+                : query.OrderBy(loan => loan.BorrowedAt),
+
+            "duedate" => descending
+                ? query.OrderByDescending(loan => loan.DueDate)
+                : query.OrderBy(loan => loan.DueDate),
+
+            "returnedat" => descending
+                ? query.OrderByDescending(loan => loan.ReturnedAt)
+                : query.OrderBy(loan => loan.ReturnedAt),
+
+            _ => descending
+                ? query.OrderByDescending(loan => loan.Id)
+                : query.OrderBy(loan => loan.Id)
+        };
+
+        var loans = await query
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync();
-    }
 
-    public async Task<Loan?> GetByIdAsync(int id)
-    {
-        return await _context.Loans.AsNoTracking().FirstOrDefaultAsync(loan => loan.Id == id);
-    }
-
-    public async Task<Loan> CreateAsync(Loan loan)
-    {
-        await _context.Loans.AddAsync(loan);
-        await _context.SaveChangesAsync();
-
-        return loan;
-    }
-
-    public async Task UpdateAsync(Loan loan)
-    {
-        _context.Loans.Update(loan);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task DeleteAsync(Loan loan)
-    {
-        _context.Loans.Remove(loan);
-        await _context.SaveChangesAsync();
+        return (loans, totalCount);
     }
 }

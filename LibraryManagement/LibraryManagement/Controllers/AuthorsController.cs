@@ -16,11 +16,12 @@ public class AuthorsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<AuthorResponseDto>>> GetAll()
+    public async Task<ActionResult<PagedResponseDto<AuthorResponseDto>>>
+        GetAll([FromQuery] ListQueryDto query)
     {
-        var authors = await _authorService.GetAllAsync();
+        var result = await _authorService.GetPagedAsync(query);
 
-        return Ok(authors);
+        return Ok(result);
     }
 
     [HttpGet("{id}")]

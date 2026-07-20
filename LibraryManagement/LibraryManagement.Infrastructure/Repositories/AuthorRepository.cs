@@ -5,46 +5,45 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagement.Infrastructure.Repositories;
 
-public class AuthorRepository : IAuthorRepository
+public class AuthorRepository: BaseRepository<Author>, IAuthorRepository
 {
-    private readonly AppDbContext _context;
+    public AuthorRepository(AppDbContext context): base(context) { }
 
-    public AuthorRepository(AppDbContext context)
+    public async Task<(IEnumerable<Author> Authors, int TotalCount)>
+        GetPagedAsync(
+            int pageNumber,
+            int pageSize,
+            string sortBy,
+            string sortDirection)
     {
-        _context = context;
-    }
+        var query = _context.Authors.AsNoTracking();
 
-    public async Task<IEnumerable<Author>> GetAllAsync()
-    {
-        return await _context.Authors
-            .AsNoTracking()
+        var totalCount = await query.CountAsync();
+
+        var descending = sortDirection.Equals(
+            "desc",
+            StringComparison.OrdinalIgnoreCase);
+
+        query = sortBy.ToLower() switch
+        {
+            "firstname" => descending
+                ? query.OrderByDescending(author => author.FirstName)
+                : query.OrderBy(author => author.FirstName),
+
+            "lastname" => descending
+                ? query.OrderByDescending(author => author.LastName)
+                : query.OrderBy(author => author.LastName),
+
+            _ => descending
+                ? query.OrderByDescending(author => author.Id)
+                : query.OrderBy(author => author.Id)
+        };
+
+        var authors = await query
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync();
-    }
 
-    public async Task<Author?> GetByIdAsync(int id)
-    {
-        return await _context.Authors
-            .AsNoTracking()
-            .FirstOrDefaultAsync(author => author.Id == id);
-    }
-
-    public async Task<Author> CreateAsync(Author author)
-    {
-        await _context.Authors.AddAsync(author);
-        await _context.SaveChangesAsync();
-
-        return author;
-    }
-
-    public async Task UpdateAsync(Author author)
-    {
-        _context.Authors.Update(author);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task DeleteAsync(Author author)
-    {
-        _context.Authors.Remove(author);
-        await _context.SaveChangesAsync();
+        return (authors, totalCount);
     }
 }

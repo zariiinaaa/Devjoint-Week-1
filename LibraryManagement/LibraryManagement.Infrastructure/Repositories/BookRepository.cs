@@ -5,102 +5,57 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagement.Infrastructure.Repositories;
 
-public class BookRepository : IBookRepository
+public class BookRepository
+    : BaseRepository<Book>, IBookRepository
 {
-    private readonly AppDbContext _context;
-
     public BookRepository(AppDbContext context)
+        : base(context) { }
+
+    public async Task<bool> BookCodeExistsAsync(string bookCode,int? bookIdToExclude = null)
     {
-        _context = context;
+        return await _context.Books.AnyAsync(book =>
+            book.BookCode == bookCode &&(!bookIdToExclude.HasValue ||
+             book.Id != bookIdToExclude.Value));
     }
 
-   
-    public async Task<(IEnumerable<Book> Books, int TotalCount)> GetPagedAsync(int pageNumber,int pageSize,
-    string sortBy,
-    string sortDirection)
+    public async Task<(IEnumerable<Book> Books, int TotalCount)>
+        GetPagedAsync(
+            int pageNumber,
+            int pageSize,
+            string sortBy,
+            string sortDirection)
     {
-        var query = _context.Books
-            .AsNoTracking();
+        var query = _context.Books.AsNoTracking();
 
         var totalCount = await query.CountAsync();
 
-        var isAscending = sortDirection.Equals(
-            "asc",
-            StringComparison.OrdinalIgnoreCase);
-
-        var isDescending = sortDirection.Equals(
+        var descending = sortDirection.Equals(
             "desc",
             StringComparison.OrdinalIgnoreCase);
 
-        if (!isAscending && !isDescending)
+        query = sortBy.ToLower() switch
         {
-            throw new ArgumentException(
-                "Sort direction must be 'asc' or 'desc'.");
-        }
-
-        var orderedQuery = sortBy.ToLowerInvariant() switch
-        {
-            "title" => isDescending
-                ? query.OrderByDescending(book => book.Title)
-                : query.OrderBy(book => book.Title),
-
-            "bookcode" => isDescending
+            "id" => descending
+                ? query.OrderByDescending(book => book.Id)
+                : query.OrderBy(book => book.Id),
+            "bookcode" => descending
                 ? query.OrderByDescending(book => book.BookCode)
                 : query.OrderBy(book => book.BookCode),
 
-            "publishedyear" => isDescending
+            "publishedyear" => descending
                 ? query.OrderByDescending(book => book.PublishedYear)
                 : query.OrderBy(book => book.PublishedYear),
 
-            _ => throw new ArgumentException(
-                "Sort by must be 'title', 'bookCode' or 'publishedYear'.")
+            _ => descending
+                ? query.OrderByDescending(book => book.Title)
+                : query.OrderBy(book => book.Title)
         };
 
-        var books = await orderedQuery.Skip((pageNumber - 1) * pageSize) .Take(pageSize)
+        var books = await query
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync();
 
         return (books, totalCount);
-    }
-
-    public async Task<Book?> GetByIdAsync(int id)
-    {
-        return await _context.Books
-            .AsNoTracking()
-            .FirstOrDefaultAsync(book => book.Id == id);
-    }
-
-    public async Task<Book> CreateAsync(Book book)
-    {
-        await _context.Books.AddAsync(book);
-        await _context.SaveChangesAsync();
-
-        return book;
-    }
-
-    public async Task UpdateAsync(Book book)
-    {
-        _context.Books.Update(book);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task DeleteAsync(Book book)
-    {
-        _context.Books.Remove(book);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task<bool> BookCodeExistsAsync(
-        string bookCode,
-        int? bookIdToExclude = null)
-    {
-        if (bookIdToExclude.HasValue)
-        {
-            return await _context.Books.AnyAsync(book =>
-                book.BookCode == bookCode &&
-                book.Id != bookIdToExclude.Value);
-        }
-
-        return await _context.Books.AnyAsync(book =>
-            book.BookCode == bookCode);
     }
 }

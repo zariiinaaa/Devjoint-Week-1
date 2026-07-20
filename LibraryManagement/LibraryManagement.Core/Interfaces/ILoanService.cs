@@ -4,7 +4,7 @@ namespace LibraryManagement.Core.Interfaces;
 
 public interface ILoanService
 {
-    Task<IEnumerable<LoanResponseDto>> GetAllAsync();
+    Task<PagedResponseDto<LoanResponseDto>> GetPagedAsync( ListQueryDto query);
 
     Task<LoanResponseDto?> GetByIdAsync(int id);
 

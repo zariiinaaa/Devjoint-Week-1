@@ -2,7 +2,7 @@
 using LibraryManagement.Core.Entities;
 using LibraryManagement.Core.Interfaces;
 
-namespace LibraryManagement.Infrastructure.Services;
+namespace LibraryManagement.Application.Services;
 
 public class BookService : IBookService
 {
@@ -13,7 +13,7 @@ public class BookService : IBookService
         _bookRepository = bookRepository;
     }
 
-   
+
 
 
     public async Task<PagedResponseDto<BookResponseDto>> GetPagedAsync(ListQueryDto query)
@@ -81,7 +81,7 @@ public class BookService : IBookService
         return MapToResponseDto(createdBook);
     }
 
-    public async Task<bool> UpdateAsync(int id,BookUpdateDto dto)
+    public async Task<bool> UpdateAsync(int id, BookUpdateDto dto)
     {
         ValidateCopies(dto.TotalCopies, dto.AvailableCopies);
 
@@ -92,7 +92,7 @@ public class BookService : IBookService
             return false;
         }
 
-        var bookCodeExists =await _bookRepository.BookCodeExistsAsync(dto.BookCode,id);
+        var bookCodeExists = await _bookRepository.BookCodeExistsAsync(dto.BookCode, id);
 
         if (bookCodeExists)
         {
@@ -138,7 +138,7 @@ public class BookService : IBookService
         };
     }
 
-    private static void ValidateCopies(int totalCopies,int availableCopies)
+    private static void ValidateCopies(int totalCopies, int availableCopies)
     {
         if (availableCopies > totalCopies)
         {

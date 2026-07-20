@@ -1,6 +1,6 @@
 ﻿using LibraryManagement.Core.Entities;
 using LibraryManagement.Core.Interfaces;
-using LibraryManagement.Infrastructure.Services;
+using LibraryManagement.Application.Services;
 using Moq;
 using Xunit;
 

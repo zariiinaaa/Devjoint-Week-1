@@ -10,7 +10,7 @@ public class ListQueryDto
     [Range(1, 100)]
     public int PageSize { get; set; } = 10;
 
-    public string SortBy { get; set; } = "title";
+    public string SortBy { get; set; } = "id";
 
     public string SortDirection { get; set; } = "asc";
 }

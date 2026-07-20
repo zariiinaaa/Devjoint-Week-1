@@ -2,7 +2,7 @@
 using LibraryManagement.Core.Entities;
 using LibraryManagement.Core.Interfaces;
 
-namespace LibraryManagement.Infrastructure.Services;
+namespace LibraryManagement.Application.Services;
 
 public class LoanService : ILoanService
 {
@@ -10,7 +10,7 @@ public class LoanService : ILoanService
     private readonly IBookRepository _bookRepository;
     private readonly IMemberRepository _memberRepository;
 
-    public LoanService( ILoanRepository loanRepository,IBookRepository bookRepository,
+    public LoanService(ILoanRepository loanRepository, IBookRepository bookRepository,
         IMemberRepository memberRepository)
     {
         _loanRepository = loanRepository;
@@ -18,11 +18,34 @@ public class LoanService : ILoanService
         _memberRepository = memberRepository;
     }
 
-    public async Task<IEnumerable<LoanResponseDto>> GetAllAsync()
+    public async Task<PagedResponseDto<LoanResponseDto>> GetPagedAsync(ListQueryDto query)
     {
-        var loans = await _loanRepository.GetAllAsync();
+        var (loans, totalCount) =
+            await _loanRepository.GetPagedAsync(
+                query.PageNumber,
+                query.PageSize,
+                query.SortBy,
+                query.SortDirection);
 
-        return loans.Select(loan => MapToResponseDto(loan));
+        var items = loans.Select(loan => new LoanResponseDto
+        {
+            Id = loan.Id,
+            BookId = loan.BookId,
+            MemberId = loan.MemberId,
+            BorrowedAt = loan.BorrowedAt,
+            DueDate = loan.DueDate,
+            ReturnedAt = loan.ReturnedAt
+        }).ToList();
+
+        return new PagedResponseDto<LoanResponseDto>
+        {
+            Items = items,
+            PageNumber = query.PageNumber,
+            PageSize = query.PageSize,
+            TotalCount = totalCount,
+            TotalPages = (int)Math.Ceiling(
+                totalCount / (double)query.PageSize)
+        };
     }
 
     public async Task<LoanResponseDto?> GetByIdAsync(int id)
@@ -43,7 +66,7 @@ public class LoanService : ILoanService
 
         ValidateDates(borrowedAt, dto.DueDate, returnedAt: null);
 
-        await ValidateBookAndMemberAsync(dto.BookId,dto.MemberId);
+        await ValidateBookAndMemberAsync(dto.BookId, dto.MemberId);
 
         var loan = new Loan
         {
@@ -60,7 +83,7 @@ public class LoanService : ILoanService
         return MapToResponseDto(createdLoan);
     }
 
-    public async Task<bool> UpdateAsync(int id,LoanUpdateDto dto)
+    public async Task<bool> UpdateAsync(int id, LoanUpdateDto dto)
     {
         var loan = await _loanRepository.GetByIdAsync(id);
 
@@ -69,7 +92,7 @@ public class LoanService : ILoanService
             return false;
         }
 
-        ValidateDates(dto.BorrowedAt,dto.DueDate, dto.ReturnedAt);
+        ValidateDates(dto.BorrowedAt, dto.DueDate, dto.ReturnedAt);
 
         await ValidateBookAndMemberAsync(dto.BookId, dto.MemberId);
 
@@ -98,7 +121,7 @@ public class LoanService : ILoanService
         return true;
     }
 
-    private async Task ValidateBookAndMemberAsync(int bookId,int memberId)
+    private async Task ValidateBookAndMemberAsync(int bookId, int memberId)
     {
         var book = await _bookRepository.GetByIdAsync(bookId);
 
@@ -117,11 +140,11 @@ public class LoanService : ILoanService
 
         if (!member.IsActive)
         {
-            throw new InvalidOperationException( "Inactive member cannot borrow a book.");
+            throw new InvalidOperationException("Inactive member cannot borrow a book.");
         }
     }
 
-    private static void ValidateDates(DateTime borrowedAt,DateTime dueDate,DateTime? returnedAt)
+    private static void ValidateDates(DateTime borrowedAt, DateTime dueDate, DateTime? returnedAt)
     {
         if (dueDate <= borrowedAt)
         {

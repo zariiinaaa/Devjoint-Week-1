@@ -2,7 +2,7 @@
 using LibraryManagement.Core.Entities;
 using LibraryManagement.Core.Interfaces;
 
-namespace LibraryManagement.Infrastructure.Services;
+namespace LibraryManagement.Application.Services;
 
 public class AuthorService : IAuthorService
 {
@@ -13,12 +13,32 @@ public class AuthorService : IAuthorService
         _authorRepository = authorRepository;
     }
 
-    public async Task<IEnumerable<AuthorResponseDto>> GetAllAsync()
+    public async Task<PagedResponseDto<AuthorResponseDto>> GetPagedAsync(ListQueryDto query)
     {
-        var authors = await _authorRepository.GetAllAsync();
+        var (authors, totalCount) =
+            await _authorRepository.GetPagedAsync(
+                query.PageNumber,
+                query.PageSize,
+                query.SortBy,
+                query.SortDirection);
 
-        return authors.Select(author =>
-            MapToResponseDto(author));
+        var items = authors.Select(author => new AuthorResponseDto
+        {
+            Id = author.Id,
+            FirstName = author.FirstName,
+            LastName = author.LastName,
+            Biography = author.Biography
+        }).ToList();
+
+        return new PagedResponseDto<AuthorResponseDto>
+        {
+            Items = items,
+            PageNumber = query.PageNumber,
+            PageSize = query.PageSize,
+            TotalCount = totalCount,
+            TotalPages = (int)Math.Ceiling(
+                totalCount / (double)query.PageSize)
+        };
     }
 
     public async Task<AuthorResponseDto?> GetByIdAsync(int id)

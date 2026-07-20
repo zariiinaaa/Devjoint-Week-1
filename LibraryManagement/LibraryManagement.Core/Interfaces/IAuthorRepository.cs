@@ -2,15 +2,11 @@
 
 namespace LibraryManagement.Core.Interfaces;
 
-public interface IAuthorRepository
+public interface IAuthorRepository : IBaseRepository<Author>
 {
-    Task<IEnumerable<Author>> GetAllAsync();
-
-    Task<Author?> GetByIdAsync(int id);
-
-    Task<Author> CreateAsync(Author author);
-
-    Task UpdateAsync(Author author);
-
-    Task DeleteAsync(Author author);
+    Task<(IEnumerable<Author> Authors, int TotalCount)> GetPagedAsync(
+        int pageNumber,
+        int pageSize,
+        string sortBy,
+        string sortDirection);
 }

@@ -2,7 +2,7 @@
 using LibraryManagement.Core.Entities;
 using LibraryManagement.Core.Interfaces;
 
-namespace LibraryManagement.Infrastructure.Services;
+namespace LibraryManagement.Application.Services;
 
 public class MemberService : IMemberService
 {
@@ -13,11 +13,35 @@ public class MemberService : IMemberService
         _memberRepository = memberRepository;
     }
 
-    public async Task<IEnumerable<MemberResponseDto>> GetAllAsync()
+    public async Task<PagedResponseDto<MemberResponseDto>> GetPagedAsync(ListQueryDto query)
     {
-        var members = await _memberRepository.GetAllAsync();
+        var (members, totalCount) =
+            await _memberRepository.GetPagedAsync(
+                query.PageNumber,
+                query.PageSize,
+                query.SortBy,
+                query.SortDirection);
 
-        return members.Select(member =>MapToResponseDto(member));
+        var items = members.Select(member => new MemberResponseDto
+        {
+            Id = member.Id,
+            FirstName = member.FirstName,
+            LastName = member.LastName,
+            Email = member.Email,
+            PhoneNumber = member.PhoneNumber,
+            MembershipDate = member.MembershipDate,
+            IsActive = member.IsActive
+        }).ToList();
+
+        return new PagedResponseDto<MemberResponseDto>
+        {
+            Items = items,
+            PageNumber = query.PageNumber,
+            PageSize = query.PageSize,
+            TotalCount = totalCount,
+            TotalPages = (int)Math.Ceiling(
+                totalCount / (double)query.PageSize)
+        };
     }
 
     public async Task<MemberResponseDto?> GetByIdAsync(int id)
@@ -34,9 +58,9 @@ public class MemberService : IMemberService
 
     public async Task<MemberResponseDto> CreateAsync(MemberCreateDto dto)
     {
-        var normalizedEmail =dto.Email.Trim().ToLowerInvariant();
+        var normalizedEmail = dto.Email.Trim().ToLowerInvariant();
 
-        var emailExists =await _memberRepository.EmailExistsAsync(normalizedEmail);
+        var emailExists = await _memberRepository.EmailExistsAsync(normalizedEmail);
 
         if (emailExists)
         {
@@ -58,7 +82,7 @@ public class MemberService : IMemberService
         return MapToResponseDto(createdMember);
     }
 
-    public async Task<bool> UpdateAsync(int id,MemberUpdateDto dto)
+    public async Task<bool> UpdateAsync(int id, MemberUpdateDto dto)
     {
         var member = await _memberRepository.GetByIdAsync(id);
 
@@ -67,9 +91,9 @@ public class MemberService : IMemberService
             return false;
         }
 
-        var normalizedEmail =dto.Email.Trim().ToLowerInvariant();
+        var normalizedEmail = dto.Email.Trim().ToLowerInvariant();
 
-        var emailExists =await _memberRepository.EmailExistsAsync(normalizedEmail,id);
+        var emailExists = await _memberRepository.EmailExistsAsync(normalizedEmail, id);
 
         if (emailExists)
         {
